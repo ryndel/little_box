@@ -12,6 +12,12 @@ $(document).ready(function(){
 	 $('body').append(littleContainer);
 	 
 	 $('a[rel*=little_box]').click(function() {
+		 
+		var fileName = $(this).attr("href");
+			if (fileName.match(/\.gif$/i)) {
+			alert('yeah whoo, its a gif');
+		}
+		 
 		var relContent = $(this).attr("rel");
 		var substr = relContent.split(';');
 		heightParts = substr[1].split('=');
@@ -30,18 +36,20 @@ $(document).ready(function(){
 });
 
 function showBanner() {
+			
 			var windowWidth = $(window).width();
-			var stageHeight = $(window).height() + $(window).scrollTop() ;
+			
+			
 			var posLeft = Math.max(windowWidth - width, 0) / 2 + $(window).scrollLeft();
 			var posTop = $(window).scrollTop() + 50;
 			var imageString = '<img src="' + asset + '" width="' + width + '" height="'+ height + '" title="' + title + '" />';
 			
 			$('#banner-preview').append(imageString);
-			
-			
-			
 			$('#banner-container').css({'width': width, 'left' : posLeft, 'top' : posTop}).fadeIn('slow');
+			
+			var stageHeight = $(document).height();
 			$('#stage').css({'height': stageHeight}).show();
+			
 	
 	
 	$('#closer').click(function() {
