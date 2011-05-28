@@ -1,16 +1,7 @@
 // variables
-var bannerSize;
-var bannerDimensions;
-var bannerPath;
-var bannerURL;
-var bannerHeadline;
-var retailerID;
-var bannercontainerWidth = 800;
 var height;
 var width;
-
-
-
+var asset;
 
 $(document).ready(function(){
 	 
@@ -24,6 +15,12 @@ $(document).ready(function(){
 		width = (widthParts[1]);
 		
 		// alert('width:' + width + ' height: '+height);
+		
+		asset = $(this).html();
+		// alert (asset);
+		
+		
+		
 		
 		showBanner();
 		
@@ -39,15 +36,20 @@ $(document).ready(function(){
 function showBanner() {
 			var windowWidth = $(window).width();
 			var stageHeight = $(window).height() + $(window).scrollTop() ;
-			var posLeft = Math.max(windowWidth - bannercontainerWidth, 0) / 2 + $(window).scrollLeft();
+			var posLeft = Math.max(windowWidth - width, 0) / 2 + $(window).scrollLeft();
 			var posTop = $(window).scrollTop() + 50;
 			
-			$('#banner-container').css({'width': bannercontainerWidth, 'left' : posLeft, 'top' : posTop}).show();
+			$('#banner-preview').append(asset);
+			
+			
+			
+			$('#banner-container').css({'width': width, 'left' : posLeft, 'top' : posTop}).show();
 			$('#stage').css({'height': stageHeight}).show();
 	// });
 	
 	$('#closer').click(function() {
 			$('#banner-container').hide();
+			$('#banner-preview').empty();
 			$('#stage').hide();
 	});
 			
